@@ -6,6 +6,8 @@ import org.simpleflatmapper.csv.CsvParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import uj.jwzp.w4.model.Movie;
 
@@ -19,13 +21,13 @@ import java.util.stream.Stream;
 import static uj.jwzp.w4.tools.NullReader.nullReader;
 
 @Slf4j
-@Service
+@Service("csvMovieFinder")
+@Scope("prototype")
 public class CSVMovieFinder implements MovieFinder {
-    @Autowired
+
     private final String fileName;// =  "movies.txt";
 
     private final List<Movie> allMovies;
-
 
     public CSVMovieFinder(String FILE_NAME) {
         this.fileName = FILE_NAME;
