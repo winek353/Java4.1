@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Service("movieLister")
 @Scope("prototype")
 public class MovieLister {
-    private MovieFinder finder; //= new CSVMovieFinder("movies.txt");
+    private MovieFinder finder;
 
     public MovieLister(MovieFinder finder) {
         this.finder = finder;

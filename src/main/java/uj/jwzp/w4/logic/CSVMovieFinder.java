@@ -3,11 +3,7 @@ package uj.jwzp.w4.logic;
 import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
 import org.simpleflatmapper.csv.CsvParser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import uj.jwzp.w4.model.Movie;
 
@@ -24,13 +20,9 @@ import static uj.jwzp.w4.tools.NullReader.nullReader;
 @Service("csvMovieFinder")
 @Scope("prototype")
 public class CSVMovieFinder implements MovieFinder {
-
-    private final String fileName;// =  "movies.txt";
-
     private final List<Movie> allMovies;
 
     public CSVMovieFinder(String FILE_NAME) {
-        this.fileName = FILE_NAME;
         Reader reader = Try
                 .of(() -> (Reader) new FileReader(FILE_NAME))
                 .onFailure(ex -> log.error("Cannot read file" + FILE_NAME, ex))
